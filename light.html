@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ambient Light Events Demo</title>
+  <link rel="stylesheet" href="light.css">
+</head>
+<body>
+  <div class="box">
+    <div class="a">
+      Are We Bright Yet?
+    </div>
+    <div class="b">
+      (Hint: the ambient light sensor is typically close to your webcam.
+      See also the
+      <a href="https://dvcs.w3.org/hg/dap/raw-file/default/light/Overview.html">Ambient Light Events spec</a>.
+      Tested with
+      <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/22">Firefox 22</a> on OS X.)
+    </div>
+  </div>
+  <script>
+  var box = document.querySelector('.box'),
+      a = document.querySelector('.box div.a');
+  
+  window.addEventListener('devicelight', function (event) {
+    a.innerHTML = event.value + ' lux';
+    box.style.opacity = (event.value / 400 > 1) ? 1.0 : (event.value / 400);
+  });
+  </script>
+</body>
+</html>
